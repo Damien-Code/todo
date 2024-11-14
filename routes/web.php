@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TodoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,7 +19,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('todo', TodoController::class)
-    ->only(['index', 'show', 'store', 'update', 'destroy'])
+    ->only(['index', 'create', 'store', 'show'])
     ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

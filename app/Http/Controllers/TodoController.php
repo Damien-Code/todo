@@ -12,7 +12,8 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //
+        $todos = todo::all();
+        return view('todo.index', ['todos' => $todos]);
     }
 
     /**
@@ -20,7 +21,7 @@ class TodoController extends Controller
      */
     public function create()
     {
-        //
+        return view('todo.create');
     }
 
     /**
@@ -28,7 +29,13 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|max:150',
+            'description' => 'required|max:200',
+            'completed' => 'boolean',
+        ]);
+        todo::create($validatedData);
+        return(redirect('todo'));
     }
 
     /**
@@ -36,7 +43,7 @@ class TodoController extends Controller
      */
     public function show(Todo $todo)
     {
-        //
+        return view('todo.show', ['todo' => $todo]);
     }
 
     /**
