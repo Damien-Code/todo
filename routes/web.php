@@ -17,4 +17,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::resource('todo', TodoController::class)
+    ->only(['index', 'show', 'store', 'update', 'destroy'])
+    ->middleware(['auth', 'verified']);
+
 require __DIR__.'/auth.php';
