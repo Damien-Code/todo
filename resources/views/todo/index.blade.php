@@ -2,17 +2,17 @@
 @section('content')
     <div class="h-32 flex justify-end items-center p-12">
         <a href="{{route('todo.create')}}">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Create Todo
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Create Todo +
             </button>
         </a>
     </div>
     <div class="grid grid-cols-3 justify-items-center pb-12 h-screen">
         @foreach($todos as $todo)
             <div class="p-6 w-80 h-36 bg-blue-200 content-center rounded-xl">
-                @switch($todo->completed ?? null)
+                @switch($todo->completed)
                     @case('1')
-                        <p class="{{ isset($todo) ? 'line-through' : 'no-underline'}}">{{$todo->title}}</p>
-                        <p class="{{ isset($todo) ? 'line-through' : 'no-underline'}}">{{$todo->description}}</p>
+                        <p class="line-through text-gray-400">{{$todo->title}}</p>
+                        <p class="line-through text-gray-400">{{$todo->description}}</p>
                         @break
                     @case('0')
                         <p>{{$todo->title}}</p>
