@@ -3,7 +3,6 @@
 <div class="bg-gray-800 h-screen flex justify-center items-center">
     <form method="post" action="{{route('todo.store')}}">
         @csrf
-
         <label for="title" class="text-white">Your Todo</label>
         <input type="text" id="title" name="title">
         <label for="description" class="text-white">What?</label>

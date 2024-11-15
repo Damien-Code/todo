@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('todo', TodoController::class)
-    ->only(['index', 'create', 'store', 'show', 'update', 'destroy'])
+    ->only(['index', 'create', 'store', 'show', 'update', 'destroy', 'edit'])
     ->middleware(['auth', 'verified']);
 
 Route::put('/todo/{todo}', [TodoController::class, 'updateTodo'])->name('todo.updateTodo')
