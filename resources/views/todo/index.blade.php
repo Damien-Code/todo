@@ -6,7 +6,7 @@
             </button>
         </a>
     </div>
-    <div class="grid grid-cols-3 justify-items-center pb-12 h-screen">
+    <div class="grid grid-cols-3 justify-items-center pb-12 h-screen gap-4">
         @foreach($todos as $todo)
             <div class="p-6 w-80 h-36 bg-blue-200 content-center rounded-xl">
                 @switch($todo->completed)
