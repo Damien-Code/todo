@@ -1,16 +1,24 @@
 @extends('layouts.default')
 @section('content')
-    <div class="h-32 flex justify-end items-center p-12 bg-gray-800">
+    <div class="h-32 flex justify-end items-center p-12">
         <a href="{{route('todo.create')}}">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Create Todo
             </button>
         </a>
     </div>
-    <div class="grid grid-cols-3 gap-6 bg-gray-800">
+    <div class="grid grid-cols-3 justify-items-center pb-12 h-screen">
         @foreach($todos as $todo)
-            <div class="p-6 w-80 bg-blue-300">
-                <p>{{$todo->title}}</p>
-                <p>{{$todo->description}}</p>
+            <div class="p-6 w-80 h-36 bg-blue-200 content-center rounded-xl">
+                @switch($todo->completed ?? null)
+                    @case('1')
+                        <p class="{{ isset($todo) ? 'line-through' : 'no-underline'}}">{{$todo->title}}</p>
+                        <p class="{{ isset($todo) ? 'line-through' : 'no-underline'}}">{{$todo->description}}</p>
+                        @break
+                    @case('0')
+                        <p>{{$todo->title}}</p>
+                        <p>{{$todo->description}}</p>
+                        @break
+                @endswitch
                 <form method="post" action="{{route('todo.updateTodo', $todo->id)}}">
                     @method('PUT')
                     @csrf
@@ -18,12 +26,20 @@
                            onclick="event.preventDefault(); this.closest('form').submit();"
                            @if($todo->completed) checked @endif value="{{old('completed', $todo->completed)}}">
                 </form>
-                <a href="{{route('todo.show', $todo->id)}}">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded-full">Show
-                    </button>
-                </a>
+                <div class="flex justify-between">
+                    <a href="{{route('todo.show', $todo->id)}}">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded-full">Show
+                        </button>
+                    </a>
+                    <form method="post" action="{{route('todo.destroy', $todo->id)}}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="bg-red-600 hover:bg-red-900 text-white font-bold py-1 px-2 rounded-full">Delete</button>
+                    </form>
+                </div>
             </div>
         @endforeach
     </div>
+
 @endsection
 
