@@ -1,15 +1,14 @@
 @extends('layouts.default')
 @section('content')
-    <div class="h-32 flex justify-end items-center p-12">
+    <div class="h-32 flex justify-end items-center p-12 bg-gray-800">
         <a href="{{route('todo.create')}}">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Create Todo
             </button>
         </a>
     </div>
-
-    <div class="grid grid-cols-4 gap-4">
+    <div class="grid grid-cols-3 gap-6 bg-gray-800">
         @foreach($todos as $todo)
-            <div class="p-6 w-60 border-solid border-gray-300 border-2">
+            <div class="p-6 w-80 bg-blue-300">
                 <p>{{$todo->title}}</p>
                 <p>{{$todo->description}}</p>
                 <form method="post" action="{{route('todo.updateTodo', $todo->id)}}">

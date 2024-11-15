@@ -4,7 +4,10 @@
     "scripts": {
         "build": "vite build",
         "dev": "vite",
-        "serve": "concurrently  \"php artisan config:cache\" \"php artisan serve\" \"npm run dev \""
+        "serve": "run-script-os",
+        "serve:windows": "concurrently  \"php artisan config:cache\" \"php artisan serve\" \"npm run dev \" \"start http://127.0.0.1:8000\"",
+        "serve:macos": "concurrently  \"php artisan config:cache\" \"php artisan serve\" \"npm run dev \" \"open http://127.0.0.1:8000\"",
+        "serve:linux": "concurrently  \"php artisan config:cache\" \"php artisan serve\" \"npm run dev \" \"xdg-open http://127.0.0.1:8000\""
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
@@ -16,5 +19,8 @@
         "postcss": "^8.4.31",
         "tailwindcss": "^3.1.0",
         "vite": "^5.0"
+    },
+    "dependencies": {
+        "run-script-os": "^1.1.6"
     }
 }
