@@ -59,9 +59,16 @@ class TodoController extends Controller
      */
     public function update(Request $request, Todo $todo)
     {
-        //
+       //
     }
 
+    public function updateTodo(Request $request, Todo $todo)
+    {
+        $todo->update([
+            'completed' => $request->has('completed'),
+        ]);
+        return redirect()->back();
+    }
     /**
      * Remove the specified resource from storage.
      */
