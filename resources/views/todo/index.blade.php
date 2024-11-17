@@ -6,17 +6,17 @@
             </button>
         </a>
     </div>
-    <div class="grid grid-cols-3 justify-items-center pb-12 h-screen gap-4">
+    <div class="grid xl:grid-cols-3 justify-items-center pb-12 h-screen gap-4 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
         @foreach($todos as $todo)
-            <div class="p-6 w-80 h-36 bg-blue-200 content-center rounded-xl">
+            <div class="p-6 w-80 h-48 bg-blue-200 content-center rounded-xl flex flex-col justify-between font-bold">
                 @switch($todo->completed)
                     @case('1')
-                        <p class="line-through text-gray-400">{{$todo->title}}</p>
-                        <p class="line-through text-gray-400">{{$todo->description}}</p>
+                        <p class="line-through text-gray-400 text-xl">{{$todo->title}}</p>
+                        <p class="line-through text-gray-400 text-xl">{{$todo->description}}</p>
                         @break
                     @case('0')
-                        <p>{{$todo->title}}</p>
-                        <p>{{$todo->description}}</p>
+                        <p class="text-xl">{{$todo->title}}</p>
+                        <p class="text-xl">{{$todo->description}}</p>
                         @break
                 @endswitch
                 <form method="post" action="{{route('todo.updateTodo', $todo->id)}}">
