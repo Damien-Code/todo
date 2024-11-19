@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-    <div>
+    <div class="flex justify-center items-center h-screen">
         <form method="post" action="{{route('todo.update', $todo->id)}}">
             @csrf
             @method('PATCH')

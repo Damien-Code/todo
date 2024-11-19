@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 
+
 class TodoController extends Controller
 {
     /**
@@ -13,6 +14,8 @@ class TodoController extends Controller
     public function index()
     {
         $todos = todo::all();
+//        $userid = Auth::user()->id;
+//        $todos = Task::where('user_id', $userid)->get();
         return view('todo.index', ['todos' => $todos]);
     }
 
