@@ -15,8 +15,8 @@ class TodoController extends Controller
     public function index()
     {
 //        $todos = todo::all();
-        $userid = Auth::user()->id;
-        $todos = Todo::where('id', $userid)->get();
+        $userid = auth()->id();
+        $todos = Todo::where('user_id', $userid)->get();
         return view('todo.index', ['todos' => $todos]);
     }
 
@@ -38,7 +38,13 @@ class TodoController extends Controller
             'description' => 'required|max:200',
             'completed' => 'boolean',
         ]);
-        todo::create($validatedData);
+
+        Todo::create([
+            'user_id' => auth()->id(),
+            'title' => $request->get('title'),
+            'description' => $request->get('description'),
+            'completed' => $request->has('completed')
+        ]);
         return(redirect('todo'));
     }
 
@@ -87,4 +93,5 @@ class TodoController extends Controller
         $todo->delete();
         return redirect(route('todo.index'));
     }
+
 }

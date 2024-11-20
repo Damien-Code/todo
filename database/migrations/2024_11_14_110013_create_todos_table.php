@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
+//            $table->foreignId('user_id')->constrained('users');
             $table->string('title');
             $table->string('description');
             $table->boolean('completed')->default(false);
