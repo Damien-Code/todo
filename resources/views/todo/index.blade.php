@@ -113,7 +113,7 @@
     </div>
     <div class="grid xl:grid-cols-3 justify-items-center h-screen gap-4 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
         @foreach($todos as $todo)
-            <div class="p-6 w-80 h-48 bg-blue-200 content-center rounded-xl flex flex-col justify-between font-bold overflow-scroll">
+            <div class="p-6 w-80  h-48 bg-blue-200 content-center rounded-xl flex flex-col justify-between font-bold overflow-scroll">
                 @switch($todo->completed)
                     @case('1')
                         <p class="line-through text-gray-400 text-xl">{{$todo->title}}</p>

@@ -16,7 +16,6 @@
 </head>
 <body class="font-sans antialiased min-h-screen bg-gray-800">
 <div>
-
     <!-- Page Content -->
     <main>
         @yield('content')
