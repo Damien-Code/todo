@@ -15,7 +15,7 @@ class TodoController extends Controller
     public function index()
     {
         $userid = auth()->id();
-        $todos = Todo::where('user_id', $userid)->get();
+        $todos = Todo::where('user_id', $userid)->paginate(9);
         return view('todo.index', ['todos' => $todos]);
     }
 

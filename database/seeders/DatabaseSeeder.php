@@ -17,13 +17,13 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()
-            ->has(Todo::factory(100))
+            ->has(Todo::factory(20))
             ->create([
             'name' => 'Damiën',
             'email' => 'dovandenijssel@live.nl',
         ]);
         User::factory(rand(1, 10))
-            ->has(Todo::factory(100))
+            ->has(Todo::factory(20))
             ->create();
     }
 }

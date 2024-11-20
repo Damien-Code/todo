@@ -22,7 +22,7 @@ class TodoFactory extends Factory
                 return User::factory();
             },
             'title' => fake()->company(),
-            'description' => fake()->text(),
+            'description' => fake()->text(32),
         ];
     }
 }
